@@ -1,0 +1,13 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        {% block head %}
+            <title>{% block title %}{% endblock %} - A tool for pinging other pods</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="content" align="center">{% block content %}{% endblock %}</div>
+        <div id="footer" align="center"><img src="/static/openshift.jpg"></div>
+    </body>
+</html>
