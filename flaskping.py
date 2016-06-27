@@ -23,10 +23,10 @@ def ping(host=None):
     if host is None:
         return render_template('results.html', return_data='You need to enter an IP in the end of the URL, like <domain>/ping/8.8.8.8')
     else:
-        cmd = "ping -c 4 -i 0.1 -W 3 %s" % host
+        cmd = "ping -c 4 %s" % host
         output = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         return_data = filter_output(output, host)
-        return render_template('center.html', return_data=return_data)
+        return render_template('results.html', return_data=return_data)
 
 if __name__ == '__main__':
     app.debug = True
