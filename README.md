@@ -14,10 +14,10 @@ The build can be monitored with the `oc log` output shown.
 
 In order to verify that we cannot ping pods allocated to different projects, go to the webpage
 
- http://ping1.<routename>/ping/ping1.ping1.endpoints.cluster.local
+ http://ping1.apps.domain.name/ping/ping1.ping1.endpoints.cluster.local
 
 A successful ping output should be the result. Now go to
 
- http://ping2.<routename>/ping/ping1.ping1.endpoints.cluster.local
+ http://ping2.apps.domain.name/ping/ping1.ping1.endpoints.cluster.local
 
 The ping output should indicate that zero packets were received at ping2 from ping1.
