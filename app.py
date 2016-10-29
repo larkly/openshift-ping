@@ -6,7 +6,7 @@ import subprocess
 app = Flask(__name__)
 
 
-def filter_output(proc, host, time_limit=None):
+def filter_output(proc, host: str, time_limit: int=None) -> str:
     """Function for getting output from process executed."""
     try:
         stdout, stderr = proc.communicate(timeout=time_limit)
@@ -30,8 +30,8 @@ def index():
 
 
 @app.route('/ping')
-@app.route('/ping/<host>')
-def ping(host=None):
+@app.route('/ping/<string:host>')
+def ping(host: string=None):
     """Main function where the 'magic' happens!..."""
     if not host:
         return render_template(
