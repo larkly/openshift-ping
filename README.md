@@ -6,7 +6,8 @@ However, this tool is set up in two projects, ping1 and ping2, using the command
 
 ```
 for project in ping1 ping2; do oc new-project $project; \
-oc new-app python:3.4~https://github.com/larkly/openshift-ping.git --name=$project -n $project
+oc new-app python:3.4~https://github.com/larkly/openshift-ping.git \
+--name=$project -n $project; done
 ```
 
 The build can be monitored with the `oc log` output shown.
