@@ -31,8 +31,9 @@ def index():
 
 
 @app.route('/ping/')
-@app.route('/ping/<host>/')
-def ping(host=None):
+@app.route('/ping/<string:host>/')
+@app.route('/ping/<string:host>/<int:count>/')
+def ping(host=None, count=4):
     """Main function where the 'magic' happens!..."""
     if not host:
         return render_template(
@@ -43,12 +44,12 @@ def ping(host=None):
 
     # Default time_limit of hardcoded 16 seconds.
     #   (It's a 4-packet ping for crying out loud...)
-
     time_limit = 16
+
     if platform.system() == "Windows":
-        cmd = ["ping", "-n", "4", str(host)]
+        cmd = ["ping", "-n", str(count), str(host)]
     else:
-        cmd = ["ping", "-c", "4", str(host)]
+        cmd = ["ping", "-c", str(count), str(host)]
 
     proc = subprocess.Popen(
         args=cmd,
