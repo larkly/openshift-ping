@@ -29,8 +29,8 @@ def index():
     return redirect("/ping", code=302)
 
 
-@app.route('/ping')
-@app.route('/ping/<host>')
+@app.route('/ping/')
+@app.route('/ping/<host>/')
 def ping(host=None):
     """Main function where the 'magic' happens!..."""
     if not host:
