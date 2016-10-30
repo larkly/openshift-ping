@@ -42,9 +42,9 @@ def ping(host: string=None):
 
     # Default time_limit of hardcoded 16 seconds.
     #   (It's a 4-packet ping for crying out loud...)
-    cmd, time_limit = "ping -c 4".split(" "), 16
+    time_limit, cmd = 16, ["ping", "-c", "4", str(host)]
     proc = subprocess.Popen(
-        args=cmd.append(host),
+        args=cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         universal_newlines=True)
