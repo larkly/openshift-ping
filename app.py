@@ -1,13 +1,25 @@
 from flask import Flask
 from flask import render_template
 from flask import redirect
-import subprocess
 import platform
+
+from sys import version_info
+
+# Due to timeout not existing before Python 3.3:
+if version_info.major == 2 or version_info.minor <= 3:
+    import pip
+    pip.main(["install", "subprocess32"])
+    # from __future__ import unicode_literals   # Not sure if necessary
+    import subprocess32 as subprocess
+else:
+    import subprocess
 
 app = Flask(__name__)
 
 
 def filter_output(proc, host, time_limit=None):
+    # type: (Popen, str, int) -> str
+    # http://stackoverflow.com/a/35230792
     """Function for getting output from process executed."""
     try:
         stdout, stderr = proc.communicate(timeout=time_limit)
@@ -26,6 +38,7 @@ def filter_output(proc, host, time_limit=None):
 
 @app.route('/')
 def index():
+    # type: () -> render_template
     """Root index for this Flask webapp. Simply redirects to /ping."""
     return redirect("/ping", code=302)
 
@@ -34,6 +47,7 @@ def index():
 @app.route('/ping/<string:host>/')
 @app.route('/ping/<string:host>/<int:count>/')
 def ping(host=None, count=4):
+    # type: (str, int) -> render_template
     """Main function where the 'magic' happens!..."""
     if not host:
         return render_template(
