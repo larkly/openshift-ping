@@ -44,7 +44,7 @@ def ping(host=None):
     #   (It's a 4-packet ping for crying out loud...)
     cmd, time_limit = "ping -c 4".split(" "), 16
     proc = subprocess.Popen(
-        args=cmd.append(host),
+        args=cmd.append(host) if host else cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         universal_newlines=True)
