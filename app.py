@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import redirect
 import subprocess
+import platform
 
 app = Flask(__name__)
 
@@ -42,7 +43,13 @@ def ping(host=None):
 
     # Default time_limit of hardcoded 16 seconds.
     #   (It's a 4-packet ping for crying out loud...)
-    time_limit, cmd = 16, ["ping", "-c", "4", str(host)]
+
+    time_limit = 16
+    if platform.system() == "Windows":
+        cmd = ["ping", "-n", "4", str(host)]
+    else:
+        cmd = ["ping", "-c", "4", str(host)]
+
     proc = subprocess.Popen(
         args=cmd,
         stdout=subprocess.PIPE,
