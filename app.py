@@ -44,7 +44,7 @@ def ping(host=None, count=4):
 
     # Default time_limit of hardcoded 16 seconds.
     #   (It's a 4-packet ping for crying out loud...)
-    time_limit = 16
+    time_limit = 2 * count
 
     if platform.system() == "Windows":
         cmd = ["ping", "-n", str(count), str(host)]
