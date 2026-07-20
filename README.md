@@ -57,7 +57,3 @@ python app.py
 FLASK_DEBUG=1 python app.py
 ```
 
-## CI
-
-GitHub Actions CI runs lint (`ruff`) and unit tests (`unittest`) on every push
-and pull request.  See [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
